@@ -1,0 +1,10 @@
+f_lasso=function(X,Y,k_fold,penal=T,lamda=NULL){
+  if(penal==T){
+    m1_old_lass=cv.grpreg(X=X,y=Y,nfolds=k_fold,penalty="grLasso",lambda=lamda)
+  }else{
+    m1_old_lass=cv.grpreg(X=X,y=Y,nfolds=k_fold,penalty="grLasso")
+  }
+  b=coef(m1_old_lass)
+  
+  return(list(beta=b,lamda=m1_old_lass$lambda.min))
+}
